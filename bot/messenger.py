@@ -20,7 +20,7 @@ class Messenger(object):
 
     def write_latex(self, channel_id):
         # greetings = ['Hi', 'Hello', 'Nice to meet you', 'Howdy', 'Salutations']
-        txt = ["latex test"]
+        txt = "latex test"
         self.send_message(channel_id, txt)
 
     def write_help_message(self, channel_id):
