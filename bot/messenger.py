@@ -18,6 +18,11 @@ class Messenger(object):
         channel = self.clients.rtm.server.channels.find(channel_id)
         channel.send_message(msg)
 
+    def write_latex(self, channel_id):
+        # greetings = ['Hi', 'Hello', 'Nice to meet you', 'Howdy', 'Salutations']
+        txt = ["latex test"]
+        self.send_message(channel_id, txt)
+
     def write_help_message(self, channel_id):
         bot_uid = self.clients.bot_user_id()
         txt = '{}\n{}\n{}\n{}'.format(
@@ -28,8 +33,7 @@ class Messenger(object):
         self.send_message(channel_id, txt)
 
     def write_greeting(self, channel_id, user_id):
-        # greetings = ['Hi', 'Hello', 'Nice to meet you', 'Howdy', 'Salutations']
-        greetings = ["We're not friends, Orad."]
+        greetings = ['Hi', 'Hello', 'Nice to meet you', 'Howdy', 'Salutations']
         txt = '{}, <@{}>!'.format(random.choice(greetings), user_id)
         self.send_message(channel_id, txt)
 
