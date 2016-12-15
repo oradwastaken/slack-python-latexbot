@@ -6,6 +6,8 @@ QUICKLATEX_URL = 'http://quicklatex.com/latex3.f'
 
 class LatexUtility(object):
   def request_QuickLatex(_, latex_string):
+    latex_string = latex_string[0] + u'{}_{}' + latex_string[1:]
+
     print >> sys.stderr, "Rendering %s on QuickLaTeX..." % latex_string
     # latex_string = '\\[ %s \\]' % latex_string
     data = {
