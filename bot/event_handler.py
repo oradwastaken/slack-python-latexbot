@@ -38,14 +38,12 @@ class RtmEventHandler(object):
 
     def _handle_message(self, event):
         # Filter out messages from the bot itself, and from non-users (eg. webhooks)
-        logger.info(event)
-
         if ('user' in event) and (not self.clients.is_message_from_me(event['user'])):
-
-            msg_txt = event['text']
-            msg_txt = re.sub('(\<.+\> )', '', msg_txt) # remove bot name references
-
+            logger.info('reached cond')
+            
             if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
+                msg_txt = re.sub('(\<.+\> )', '', msg_txt) # remove bot name references
+                logger.info('POST text: ' + msg_txt)
                 # e.g. user typed: "@pybot tell me a joke!"
                 if msg_txt[0] == '$' and msg_txt[-1] == '$':
                     self.msg_writer.write_latex(event['channel'], msg_txt)
