@@ -2,6 +2,7 @@
 
 import logging
 import random
+from latex import LatexUtility
 
 logger = logging.getLogger(__name__)
 
@@ -18,10 +19,10 @@ class Messenger(object):
         channel = self.clients.rtm.server.channels.find(channel_id)
         channel.send_message(msg)
 
-    def write_latex(self, channel_id):
-        # greetings = ['Hi', 'Hello', 'Nice to meet you', 'Howdy', 'Salutations']
-        txt = "latex test"
-        self.send_message(channel_id, txt)
+    def write_latex(self, channel_id, msg):
+        latex_helper = latex()
+        latex_link = latex_helper.request_QuickLatex(msg)
+        self.send_message(channel_id, latex_link)
 
     def write_help_message(self, channel_id):
         bot_uid = self.clients.bot_user_id()
