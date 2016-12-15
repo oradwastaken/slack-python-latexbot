@@ -43,21 +43,22 @@ class RtmEventHandler(object):
 
             if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
                 msg_txt = re.sub('(\<.+\> )', '', msg_txt) # remove bot name references
+                self.msg_writer.write_latex(event['channel'], msg_txt)
                 # e.g. user typed: "@pybot tell me a joke!"
-                if msg_txt[0] == '$' and msg_txt[-1] == '$':
-                    self.msg_writer.write_latex(event['channel'], msg_txt)
-                elif 'help' in msg_txt:
-                    self.msg_writer.write_help_message(event['channel'])
-                elif re.search('hi|hey|hello|howdy', msg_txt):
-                    self.msg_writer.write_greeting(event['channel'], event['user'])
-                elif 'joke' in msg_txt:
-                    self.msg_writer.write_joke(event['channel'])
-                elif 'attachment' in msg_txt:
-                    self.msg_writer.demo_attachment(event['channel'])
-                elif 'echo' in msg_txt:
-                    self.msg_writer.send_message(event['channel'], msg_txt)
-                else:
-                    self.msg_writer.write_prompt(event['channel'])
+                # if msg_txt[0] == '$' and msg_txt[-1] == '$':
+                #     self.msg_writer.write_latex(event['channel'], msg_txt)
+                # elif 'help' in msg_txt:
+                #     self.msg_writer.write_help_message(event['channel'])
+                # elif re.search('hi|hey|hello|howdy', msg_txt):
+                #     self.msg_writer.write_greeting(event['channel'], event['user'])
+                # elif 'joke' in msg_txt:
+                #     self.msg_writer.write_joke(event['channel'])
+                # elif 'attachment' in msg_txt:
+                #     self.msg_writer.demo_attachment(event['channel'])
+                # elif 'echo' in msg_txt:
+                #     self.msg_writer.send_message(event['channel'], msg_txt)
+                # else:
+                #     self.msg_writer.write_prompt(event['channel'])
 
     def _is_direct_message(self, channel):
         """Check if channel is a direct message channel
