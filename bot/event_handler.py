@@ -17,8 +17,8 @@ class RtmEventHandler(object):
 
     def _handle_by_type(self, event_type, event):
         # See https://api.slack.com/rtm for a full list of events
-        if 'channel' in event:
-            logger.debug('Channel event: TYPE: %s, EVENT: %s' % (event_type, event['channel']))
+        # if 'channel' in event:
+        logger.info(event)
 
 
         if event_type == 'error':
