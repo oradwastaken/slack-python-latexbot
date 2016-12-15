@@ -24,10 +24,6 @@ class RtmEventHandler(object):
         if event_type == 'error':
             # error
             self.msg_writer.write_error(event['channel'], json.dumps(event))
-        # elif event_type == 'message.channels':
-        #     if '@latexbot ' in event['channel']:
-        #         msg = event['channel'].replace('@latexbot ', '')
-        #         self._handle_message(msg)
         elif event_type == 'message':
             # message was sent to channel
             self._handle_message(event)
@@ -45,9 +41,7 @@ class RtmEventHandler(object):
         if ('user' in event) and (not self.clients.is_message_from_me(event['user'])):
 
             msg_txt = event['text']
-            # logger.info("Old message: " + msg_txt)
             msg_txt = re.sub('(\<.+\> )', '', msg_txt) # remove bot name references
-            # logger.info("New message: " + msg_txt)
 
             if self.clients.is_bot_mention(msg_txt) or self._is_direct_message(event['channel']):
                 # e.g. user typed: "@pybot tell me a joke!"
