@@ -1,5 +1,4 @@
 import requests
-import string
 import sys
 import urllib
 

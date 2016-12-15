@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import string
 import logging
 import random
 from latex import LatexUtility
