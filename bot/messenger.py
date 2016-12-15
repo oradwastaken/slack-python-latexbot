@@ -20,7 +20,7 @@ class Messenger(object):
         channel.send_message(msg)
 
     def write_latex(self, channel_id, msg):
-        latex_helper = latex()
+        latex_helper = LatexUtility()
         latex_link = latex_helper.request_QuickLatex(msg)
         self.send_message(channel_id, latex_link)
 
